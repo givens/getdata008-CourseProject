@@ -15,8 +15,6 @@ This project folder contains files
 
 - Codebook.md:  Provides code book for output produced by run_analysis.R script
 
-- Auxillary files:  Additional files used in construction of repo which are not material to the Course Project
-
 ### File Execution
 
 run_analysis.R operates on movement data that is assumed to be in same directory.
