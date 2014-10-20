@@ -2,11 +2,17 @@
 
 ## Labels
 
-"Subject"
+"Subject" -- Subject is a number from 1 to 30
 
-"Activity"
+"Activity" -- 6 Types of Actions
 
-## Mean of Time, Body Acceleration for each axis, where Units are [m/s^2]
+## Note about Units
+
+All units are normalized, so units have been cancelled.
+
+## Means
+
+### Means for 3 Axes of tBodyAcc
 
 "tBodyAcc-mean-X"
 
@@ -14,7 +20,7 @@
 
 "tBodyAcc-mean-Z"
 
-## Mean of Time, Gravity Acceleration, where Units are [m/s^2]
+### Means for 3 Axes of tGravityAcc
 
 "tGravityAcc-mean-X"
 
@@ -22,7 +28,7 @@
 
 "tGravityAcc-mean-Z"
 
-## Mean of Time, Body Acceleration Jerk, where Units are [m/s^3]
+### Means for 3 Axes of tBodyAccJerk
 
 "tBodyAccJerk-mean-X"
 
@@ -30,7 +36,7 @@
 
 "tBodyAccJerk-mean-Z"
 
-## Mean of Time, Body Gyro, where Units are [radians/s]
+### Means for tBodyGyro
 
 "tBodyGyro-mean-X"
 
@@ -38,7 +44,7 @@
 
 "tBodyGyro-mean-Z"
 
-## Mean of Time, Body Gyro Jerk, where Units are [radians/s^3]
+### Means for tBodyGyroJerk
 
 "tBodyGyroJerk-mean-X"
 
@@ -46,7 +52,7 @@
 
 "tBodyGyroJerk-mean-Z"
 
-## Mean of Acceleration magnitudes, where units depend on what is measured.  See above.
+### Means of Magnitudes
 
 "tBodyAccMag-mean"
 
@@ -58,7 +64,7 @@
 
 "tBodyGyroJerkMag-mean"
 
-## Mean of Frequency of Body Acceleration, where units are ??
+### Means of Body Acceleration Frequencies
 
 "fBodyAcc-mean-X"
 
@@ -66,7 +72,7 @@
 
 "fBodyAcc-mean-Z"
 
-## Mean Frequency of Body Acceleration, where units are ??
+### Mean Frequencies of Body Accelerations
 
 "fBodyAcc-meanFreq-X"
 
@@ -74,7 +80,7 @@
 
 "fBodyAcc-meanFreq-Z"
 
-## Mean of Frequency of Body Acceleration Jerk, where units are ?? 
+### Mean of Frequencies for Body Acceleration Jerk
 
 "fBodyAccJerk-mean-X"
 
@@ -82,7 +88,7 @@
 
 "fBodyAccJerk-mean-Z"
 
-## Mean Frequency of Body Acceleration Jerk, where units are ??
+### Mean Frequency of Frequency for Body Acceleration Jerk
 
 "fBodyAccJerk-meanFreq-X"
 
@@ -90,7 +96,7 @@
 
 "fBodyAccJerk-meanFreq-Z"
 
-## Mean of Frequency of Body Gyro, where units are ??
+### Mean of Frequency for Body Gyro
 
 "fBodyGyro-mean-X"
 
@@ -98,11 +104,15 @@
 
 "fBodyGyro-mean-Z"
 
+### Mean Frequency of Frequency of Body Gyro
+
 "fBodyGyro-meanFreq-X"
 
 "fBodyGyro-meanFreq-Y"
 
 "fBodyGyro-meanFreq-Z"
+
+### Mean and Mean Frequency of Magnitudes
 
 "fBodyAccMag-mean"
 
@@ -120,6 +130,8 @@
 
 "fBodyBodyGyroJerkMag-meanFreq"
 
+### Angles for Accelerations and Jerks
+
 "angletBodyAccMeangravity"
 
 "angletBodyAccJerkMeangravityMean"
@@ -134,11 +146,17 @@
 
 "angleZgravityMean"
 
+## Standard Deviations
+
+### Standard Deviation of Body Acceleration
+
 "tBodyAcc-std-X"
 
 "tBodyAcc-std-Y"
 
 "tBodyAcc-std-Z"
+
+### Standard Deviation of Gravity Acceleration
 
 "tGravityAcc-std-X"
 
@@ -146,11 +164,15 @@
 
 "tGravityAcc-std-Z"
 
+### Standard Deviation of Body Acceleration Jerk
+
 "tBodyAccJerk-std-X"
 
 "tBodyAccJerk-std-Y"
 
 "tBodyAccJerk-std-Z"
+
+### Standard Deviation of Body Gyro
 
 "tBodyGyro-std-X"
 
@@ -158,11 +180,15 @@
 
 "tBodyGyro-std-Z"
 
+### Standard Deviation of Body Gyro Jerk
+
 "tBodyGyroJerk-std-X"
 
 "tBodyGyroJerk-std-Y"
 
 "tBodyGyroJerk-std-Z"
+
+### Standard Deviation of Magnitudes
 
 "tBodyAccMag-std"
 
@@ -174,17 +200,23 @@
 
 "tBodyGyroJerkMag-std"
 
+### Standard Deviation of Body Acceleration Frequencies
+
 "fBodyAcc-std-X"
 
 "fBodyAcc-std-Y"
 
 "fBodyAcc-std-Z"
 
+### Standard Deviation of Body Acceleration Jerk Frequencies
+
 "fBodyAccJerk-std-X"
 
 "fBodyAccJerk-std-Y"
 
 "fBodyAccJerk-std-Z"
+
+### Standard Deviation of Body Gyro Frequencies
 
 "fBodyGyro-std-X"
 
