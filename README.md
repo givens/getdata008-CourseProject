@@ -15,11 +15,16 @@ This project folder contains files
 
 - Codebook.md:  Provides code book for output produced by run_analysis.R script
 
+### Prior to File Execution
+
+Install dependencies.  Run all commands in RStudio 0.98.1049 on a Mac OS X Version 10.9.5:
+
+        install.packages("dplyr")
+        install.packages("stringr")
+
 ### File Execution
 
-run_analysis.R operates on movement data that is assumed to be in same directory.
-
-To produce tidy2.txt output, do the following operations in RStudio 0.98.1049 on a Mac OS X Version 10.9.5:
+The run analysis script operates on movement data that is assumed to be in same directory.  To produce tidy2.txt output, download the data:
 
     source('download.R')
 
