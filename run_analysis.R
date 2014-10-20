@@ -11,7 +11,7 @@
 # subject_train.txt -- labels for 70% of the 30 volunteers
 # subject_test.txt -- labels for 30% of the 30 volunteers
 
-# Order of completion:  Steps 1 -> 4 -> 2 -> 3 -> 5
+# Order of completion:  Steps 1 -> 4 -> 2 -> 5 -> 3
 
 # Libraries
 library(dplyr)
@@ -62,24 +62,25 @@ df_x_mean <- select(df_x,contains("mean",ignore.case=T))
 df_x_std <- select(df_x,contains("std",ignore.case=T))
 df_x <- cbind(df_x_mean,df_x_std)
 
-## 3.  Label activities using actions
-action <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2] # Just second column
-action <- as.character(action)
-df_a %>% mutate(Activity=action[Activity])
+# ## 3.  Label activities using actions
+# df_act <- df_a %>% mutate(Activity=action[Activity])
 
 ## Create tidy data set #1 -- subject, activity, and X
-tidy1 <- cbind(df_s,df_a,df_x) 
-
-## Write tidy1 codebook to file
-codebook <- names(tidy1)
-write.table(codebook,"Codebook_tidy1.md",row.names=F,col.names=F)
+tidy1 <- cbind(df_s,df_a,df_x) # actions not labeled
 
 ## 5.  Create tidy data set #2
 tidy2 <- tidy1 %>% group_by(Subject,Activity) %>% summarise_each(funs(mean))
-tidy2 <- tidy2 %>% mutate(Activity=action[Activity]) # relabel
 
-## Write tidy2 codebook to file
+## 3.  Label activities using actions
+action <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2] # Just second column
+action <- as.character(action)
+tidy1 <- tidy1 %>% mutate(Activity=action[Activity])
+tidy2 <- tidy2 %>% mutate(Activity=action[Activity]) 
+
+## Write two codebooks, check for equivalency manually
+codebook <- names(tidy1)
+write.table(codebook,"Codebook_tidy1.md",row.names=F,col.names=F)
 codebook <- names(tidy2)
 write.table(codebook,"Codebook_tidy2.md",row.names=F,col.names=F)
-# tidy1 and tidy2 should have same codebook.  This is a check.
+# tidy1 and tidy2 should have same codebook, in same order.
 
