@@ -23,7 +23,7 @@ run_analysis.R operates on movement data that is assumed to be in same directory
 
 To produce tidy2.txt output, do the following operations in RStudio 0.98.1049 on a Mac OS X Version 10.9.5:
 
-  source('download.R')
+    source('download.R')
 
 The data.zip file is saved to the local directory.  A download_date.txt file is saved to local directory which indicates when the file was downloaded, per instructor video lectures.
 
@@ -33,14 +33,14 @@ A directory called "UCI HAR Dataset" appears in the local directory.  This direc
 
 Keep directory structure intact. 
 
-  source('run_analysis.R')
+    source('run_analysis.R')
 
 The run analysis script performs 5 objectives mentioned in project guidelines.  It writes a table called tidy2.txt to the local directory.
 
 View this data as follows:
 
-  data <- read.table(file_path, header = TRUE)
-  View(data)
+    data <- read.table(file_path, header = TRUE)
+    View(data)
 
 This is mentioned in David Hood's project FAQ.
 
