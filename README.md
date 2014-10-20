@@ -1,9 +1,9 @@
-getdata008-CourseProject, Version 0.1
-========================
+# getdata008-CourseProject, Version 0.1
 Brendhan Givens
-Materials for Getting and Cleaning Data
-Course Project
-========================
+
+## Materials for Getting and Cleaning Data, Course Project
+
+### Repo Contents
 
 This project folder contains files
 
@@ -17,7 +17,7 @@ This project folder contains files
 
 - Auxillary files:  Additional files used in construction of repo which are not material to the Course Project
 
----
+### File Execution
 
 run_analysis.R operates on movement data that is assumed to be in same directory.
 
@@ -44,3 +44,13 @@ View this data as follows:
 
 This is mentioned in David Hood's project FAQ.
 
+### How The RUN ANALYSIS Script Works, er, What it does
+
+1.  Reads flat files in topmost train and test directories.
+2.  Merges these data sets.
+3.  Labels columns with descriptive variable names from the features file.  These variable names have some punctuation removed to aid clarity.
+4.  Extracts mean and standard deviation columns.  Any column variable containing "mean" or "std" is extracted, where case is ignored.  
+5.  Create tidy1 dataset.  (Seems somewhat unecessary, but is stipulated by guidelines.)
+6.  Create tidy2 from tidy1.  Summarize each activity for each subject.
+7.  Label activities using actions.
+8.  Saves tidy2 table to tidy2.txt in local directory.
