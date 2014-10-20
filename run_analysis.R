@@ -4,6 +4,7 @@
 # 4.  Appropriately label the data set with descriptive variable names
 # 5.  Create a second independent tidy data set with the average of each variable for each activity and each subject.
 
+# RELEVANT FILES
 # activity_labels.txt -- labels for different types of activities
 # features.txt -- 561 types of features in each observation
 # features_info.txt -- how different features mentioned in features.txt are derived.
@@ -17,7 +18,7 @@
 library(dplyr)
 library(stringr)
 
-# remove extraneous values
+# NOTE:  remove extraneous values
 rm(list=ls())
 
 # Variable names
