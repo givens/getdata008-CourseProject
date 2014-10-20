@@ -224,6 +224,8 @@ All units are normalized, so units have been cancelled.
 
 "fBodyGyro-std-Z"
 
+### Standard Deviation of Magnitudes
+
 "fBodyAccMag-std"
 
 "fBodyBodyAccJerkMag-std"
