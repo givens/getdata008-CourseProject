@@ -47,7 +47,7 @@ View this data as follows:
 
 This is mentioned in David Hood's project FAQ.
 
-### How The RUN ANALYSIS Script Works, er, What it does
+### Overview of **WHAT THE ANALYSIS FILE DOES**
 
 1.  Reads flat files in topmost train and test directories.
 2.  Merges these data sets.
