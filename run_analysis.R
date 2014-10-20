@@ -1,8 +1,11 @@
+# Run Analysis
+# This script completes five actions.
 # 1.  Merge training and test sets to create one data set
 # 2.  Extracts only the measurements on the mean and standard deviation for each measurement
 # 3.  Uses descriptive activity names to name the activities in the data set
 # 4.  Appropriately label the data set with descriptive variable names
 # 5.  Create a second independent tidy data set with the average of each variable for each activity and each subject.
+# Order of completion:  Steps 1 -> 4 -> 2 -> 5 -> 3
 
 # RELEVANT FILES
 # activity_labels.txt -- labels for different types of activities
@@ -12,7 +15,7 @@
 # subject_train.txt -- labels for 70% of the 30 volunteers
 # subject_test.txt -- labels for 30% of the 30 volunteers
 
-# Order of completion:  Steps 1 -> 4 -> 2 -> 5 -> 3
+# bpg
 
 # Libraries
 library(dplyr)
@@ -85,3 +88,5 @@ codebook <- names(tidy2)
 write.table(codebook,"Codebook_tidy2.md",row.names=F,col.names=F)
 # tidy1 and tidy2 should have same codebook, in same order.
 
+## Write tidy2 to file
+write.table(tidy2,"tidy2.txt",row.name=F)
