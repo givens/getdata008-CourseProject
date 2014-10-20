@@ -11,47 +11,22 @@
 # subject_train.txt -- labels for 70% of the 30 volunteers
 # subject_test.txt -- labels for 30% of the 30 volunteers
 
-# Order of completion:  Steps 1 -> 4 -> 3 -> 2 -> 5
+# Order of completion:  Steps 1 -> 4 -> 2 -> 3 -> 5
 
-# clear all
+# Libraries
+library(dplyr)
+library(stringr)
+
+# remove extraneous values
 rm(list=ls())
 
 # Variable names
 act <- "Activity"
 subj <- "Subject"
 
-# Libraries
-library(dplyr)
-library(stringr)
-
-# Set working directory
-wd = "~/Dropbox/Statistics/Coursera/datascience/getdata-008/Project"
-setwd(wd)
-
-# Create data directory
-if (!file.exists("data")) {
-  dir.create("data")
-}
-
-# Download files
-if (!file.exists("./data/data.zip")){
-  fileUrl = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-  destFile = "./data/data.zip"
-  method = "curl"
-  download.file(fileUrl,destfile=destFile,method=method)
-}
-
-# list files
-#list.files("./data")
-
-# Download date - why?
-#dateDownloaded <- date()
-
 # Determine paths for relevant files
-paths_train <- dir("data/train","\\.txt$",full.names=T)
-paths_test <- dir("data/test","\\.txt$",full.names=T)
-#paths_train_inert <- dir("data/train/Inertial Signals","\\.txt$",full.names=T)
-#paths_test_inert <- dir("data/test/Inertial Signals","\\.txt$",full.names=T)
+paths_train <- dir("./UCI HAR Dataset/train","\\.txt$",full.names=T)
+paths_test <- dir("./UCI HAR Dataset/test","\\.txt$",full.names=T)
 
 ## Read flat files
 # train
@@ -64,65 +39,47 @@ df_X2 <- read.table(paths_test[2]) # test X, X2
 df_a2 <- read.table(paths_test[3]) # test activity, a2
 
 ## 1.  Merge
-# Merge the X1 and X2 data sets, and y1 and y2 data sets, together
+# Merge train and test sets together
 # rbind, cbind
-
-df_X <- rbind(df_X1,df_X2)
+df_x <- rbind(df_X1,df_X2)
 df_a <- rbind(df_a1,df_a2)
 df_s <- rbind(df_s1,df_s2)
-df <- cbind(df_X,df_a,df_s)
-ds <- tbl_df(df)
-rm("df") # avoid confusion 
-dims <- dim(ds)
 
-## 4.  Label ALL columns with descriptive variable names
-# features <- read.table("./data/features.txt")[,2] # Just second column
-# features <- as.character(features)
-# features <- c(features,act,subj)
-# features <- str_replace_all(features,"[(),]","") # remove "(),-"
-# names(ds) <- features
-
-## 4.  Label columns with descriptive (and unique) variable names
-features <- read.table("./data/features.txt")[,2] # Just second column
+## 4.  Label columns with descriptive variable names
+# X
+features <- read.table("./UCI HAR Dataset/features.txt")[,2] # Just second column
 features <- as.character(features)
-features <- c(features,act,subj)
 features <- str_replace_all(features,"[(),]","") # remove "()," and possibly "-"
-features <- tolower(features)
-names <- names(ds)
-features <- str_c(features,names)
-names(ds) <- features
+names(df_x) <- features
+# Activity
+names(df_a) <- act
+# Subject
+names(df_s) <- subj
 
-# # # Label certain columns for clarity
-# names <- names(ds)
-# names[(dims[2]-1):dims[2]] <- c(act,subj)
-# #names[dims[2]] <- subj
-# names(ds) <- names
+## 2. Extract columns with filenames that contain "mean" and "std",
+## and ignore case.
+df_x_mean <- select(df_x,contains("mean",ignore.case=T))
+df_x_std <- select(df_x,contains("std",ignore.case=T))
+df_x <- cbind(df_x_mean,df_x_std)
 
 ## 3.  Label activities using actions
-# Name descriptive activities such as 
-# 1 -> "Walking", 
-# 2 -> "Walking_Upstairs", etc.
-# from activity labels
-
-# Label activities by action
-action <- read.table("./data/activity_labels.txt")[,2] # Just second column
+action <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2] # Just second column
 action <- as.character(action)
-ds %>% mutate(activityV1=action[activityV1])
+df_a %>% mutate(Activity=action[Activity])
 
-tidy1 <- ds # tidy data set #1
+## Create tidy data set #1 -- subject, activity, and X
+tidy1 <- cbind(df_s,df_a,df_x) 
 
-# ## 2.  Extract
-# # Extract the mean and std dev from each column in X
-# # Extracting the mean and std dev from subject doesn't mean anything
-# # Extracting the mean and std dev from activity doesn't mean anything
-# tidy1_mean <- apply(tidy1[,1:(dims[2]-2)],2,mean) # same as colMeans
-# tidy1_stddev <- sqrt(apply(tidy1[,1:(dims[2]-2)],2,var))  
-# # something like colStdDev (which doesn't exist)
-# # std. dev. is sqrt of variance
-# # What do we do with these results?
+## Write tidy1 codebook to file
+codebook <- names(tidy1)
+write.table(codebook,"Codebook_tidy1.md",row.names=F,col.names=F)
 
-## 5.  Create a second independent tidy data set with the average 
-##     of each variable for each activity and each subject.
+## 5.  Create tidy data set #2
+tidy2 <- tidy1 %>% group_by(Subject,Activity) %>% summarise_each(funs(mean))
+tidy2 <- tidy2 %>% mutate(Activity=action[Activity]) # relabel
 
-tidy2 <- ds %>% group_by(subjectV1,activityV1) %>% summarise_each(funs(mean))
-# tidy data set #2
+## Write tidy2 codebook to file
+codebook <- names(tidy2)
+write.table(codebook,"Codebook_tidy2.md",row.names=F,col.names=F)
+# tidy1 and tidy2 should have same codebook.  This is a check.
+
