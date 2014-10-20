@@ -1,4 +1,4 @@
-# Run Analysis
+# RUN ANALYSIS
 # This script completes five actions.
 # 1.  Merge training and test sets to create one data set
 # 2.  Extracts only the measurements on the mean and standard deviation for each measurement
@@ -7,11 +7,10 @@
 # 5.  Create a second independent tidy data set with the average of each variable for each activity and each subject.
 # Order of completion:  Steps 1 -> 4 -> 2 -> 5 -> 3
 
-# RELEVANT FILES
+# SOME RELEVANT FILES
 # activity_labels.txt -- labels for different types of activities
 # features.txt -- 561 types of features in each observation
 # features_info.txt -- how different features mentioned in features.txt are derived.
-
 # subject_train.txt -- labels for 70% of the 30 volunteers
 # subject_test.txt -- labels for 30% of the 30 volunteers
 
@@ -81,12 +80,13 @@ action <- as.character(action)
 tidy1 <- tidy1 %>% mutate(Activity=action[Activity])
 tidy2 <- tidy2 %>% mutate(Activity=action[Activity]) 
 
-## Write two codebooks, check for equivalency manually
-codebook <- names(tidy1)
-write.table(codebook,"Codebook_tidy1.md",row.names=F,col.names=F)
-codebook <- names(tidy2)
-write.table(codebook,"Codebook_tidy2.md",row.names=F,col.names=F)
-# tidy1 and tidy2 should have same codebook, in same order.
+# ## Write two codebooks, check for equivalency manually
+# codebook <- names(tidy1)
+# write.table(codebook,"Codebook_tidy1.md",row.names=F,col.names=F)
+# codebook <- names(tidy2)
+# write.table(codebook,"Codebook_tidy2.md",row.names=F,col.names=F)
+# # tidy1 and tidy2 should have same codebook, in same order.
 
 ## Write tidy2 to file
 write.table(tidy2,"tidy2.txt",row.name=F)
+# It seems unncessary to write tidy1 to file.
